@@ -1,34 +1,0 @@
-10
-
-dir
-35
-https://ydx-pc:9999/svn/MyRepository/trunk/card/src
-https://ydx-pc:9999/svn/MyRepository
-
-
-
-2015-11-13T14:46:48.444775Z
-6
-ydx
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-0d53e2d4-40fd-9943-aad7-abc8db39fcf8
-
-META-INF
-dir
-
-com
-dir
-
