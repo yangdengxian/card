@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/MyRepository/!svn/ver/6/trunk/card/WebRoot/WEB-INF
+END
+新建文本文档.txt
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/MyRepository/!svn/ver/6/trunk/card/WebRoot/WEB-INF/%E6%96%B0%E5%BB%BA%E6%96%87%E6%9C%AC%E6%96%87%E6%A1%A3.txt
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/MyRepository/!svn/ver/6/trunk/card/WebRoot/WEB-INF/web.xml
+END
