@@ -1,7 +1,9 @@
 $(function(){
+
 	$("#imageBtn").click(function(){
-		createCode();
+		createCode();	
 	});
+
 	function createCode(){
 		var name=comp=dept=title=addr=mob=tel=fax=email=rem=str="";
 		if($("#name").val().length>0){
@@ -36,13 +38,31 @@ $(function(){
 			rem="NOTE:"+$("#remark").val()+"\n";
 		}
 		str = "BEGIN:VCARD\n"+name+dept+title+addr+mob+tel+fax+email+rem+"END:VCARD";
-		qrcode(str);
+		
+
+		if ($("#picSelectVal").val() == "svg") {
+			var qrcode = {};
+			$("#svgDiv").show();
+			$(".img_item").hide();
+			qrcode = new QRCode(document.getElementById("qrcode"), {
+			    width : 255,
+			    height : 255,
+			    correctLevel: 1,
+			    useSVG: true
+			});
+			qrcode.makeCode(str);
+		} else {
+			$("#svgDiv").hide();
+			$(".img_item").show();
+			qrcodeServlet(str,$("#picSelectVal").val());
+		}
 	}
-	function qrcode(str){
+
+	function qrcodeServlet(str,picType){
 		$.ajax({
 			type:"post",
 			url:"ECardServlet",
-			data:{content:str},
+			data:{content:str,picType:picType},
 			success:function(data){
 				$("#qrcodeImage").attr("src",data);
 			}

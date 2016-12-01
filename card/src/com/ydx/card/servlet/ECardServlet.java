@@ -71,34 +71,38 @@ public class ECardServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		// 获取前端内容
+		// 鑾峰彇鍓嶇鍐呭
 		String content = request.getParameter("content");
-		// 创建qrcode对象
+		String type = request.getParameter("picType");
+		if (null == content || (null == type)) {
+			return;
+		}
+		// 鍒涘缓qrcode瀵硅薄
 		Qrcode qrcode = new Qrcode();
-		// 设置纠错级别
+		// 璁剧疆绾犻敊绾у埆
 		qrcode.setQrcodeErrorCorrect('M');
-		// 设置编码级别 模式二级制
+		// 璁剧疆缂栫爜绾у埆 妯″紡浜岀骇鍒�
 		qrcode.setQrcodeEncodeMode('B');
-		// 设置版本 1-40 版本越大，容纳的字符数越多
+		// 璁剧疆鐗堟湰 1-40 鐗堟湰瓒婂ぇ锛屽绾崇殑瀛楃鏁拌秺澶�
 		qrcode.setQrcodeVersion(15);
 
 		byte[] contentBytes = content.getBytes("UTF-8");
 		int width = 255;
 		int height = 255;
 
-		// 获取一个画板
+		// 鑾峰彇涓�釜鐢绘澘
 		BufferedImage image = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_RGB);
 
-		// 获取一根画笔
+		// 鑾峰彇涓�牴鐢荤瑪
 		Graphics2D g = image.createGraphics();
 		g.setBackground(Color.WHITE);
 
-		// 清空内容
+		// 娓呯┖鍐呭
 		g.clearRect(0, 0, width, height);
 		g.setColor(Color.BLACK);
 
-		// 字节数组转换
+		// 瀛楄妭鏁扮粍杞崲
 		boolean[][] codeOut = qrcode.calQrcode(contentBytes);
 		for (int i = 0; i < codeOut.length; i++) {
 			for (int j = 0; j < codeOut.length; j++) {
@@ -109,12 +113,12 @@ public class ECardServlet extends HttpServlet {
 		}
 		g.dispose();
 		image.flush();
-		String imageName = UUID.randomUUID() + ".png";
+		String imageName = UUID.randomUUID() + "." + type;
 		File file = new File(request.getRealPath("/img") + "/" + imageName);
 		if (!file.exists()) {
 			file.mkdirs();
 		}
-		ImageIO.write(image, "png", file);
+		ImageIO.write(image, type, file);
 		PrintWriter out = response.getWriter();
 		out.print("img/" + imageName);
 //		System.out.print(file);

@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 引入外部xml文件 -->
+<!DOCTYPE web-app[
+<!ENTITY servlet_web SYSTEM "classes/resources/servlet.xml">
+]>
 <web-app version="2.5" 
 	xmlns="http://java.sun.com/xml/ns/javaee" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
 	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>ECardServlet</servlet-name>
-    <servlet-class>com.ydx.card.servlet.ECardServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>ECardServlet</servlet-name>
-    <url-pattern>/ECardServlet</url-pattern>
-  </servlet-mapping>
-  <welcome-file-list>
+	<!-- 引入servlet文件 -->
+	&servlet_web;
+   <welcome-file-list>
     <welcome-file>index_new.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
